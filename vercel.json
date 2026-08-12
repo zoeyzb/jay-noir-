@@ -1,1 +1,4 @@
-{"functions":{"api/subscribe.js":{"memory":128}}}
+{
+  "functions": {"api/subscribe.js": {"memory": 128}},
+  "rewrites": [{"source": "/assets/jay-noir.jpg", "destination": "/assets/jay-noir.svg"}]
+}
