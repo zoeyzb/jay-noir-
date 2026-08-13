@@ -1,4 +1,17 @@
 {
-  "functions": {"api/subscribe.js": {"memory": 128}},
-  "rewrites": [{"source": "/assets/jay-noir.jpg", "destination": "/assets/jay-noir.svg"}]
+  "functions": {
+    "api/subscribe.js": {"memory": 128},
+    "api/photo-hero.js": {"memory": 128},
+    "api/photo-garage.js": {"memory": 128},
+    "api/photo-robe.js": {"memory": 128},
+    "api/photo-about.js": {"memory": 128}
+  },
+  "rewrites": [
+    {"source": "/assets/jay-gold.jpg", "destination": "/api/photo-hero"},
+    {"source": "/assets/jay-garage.jpg", "destination": "/api/photo-garage"},
+    {"source": "/assets/jay-robe.jpg", "destination": "/api/photo-robe"},
+    {"source": "/assets/jay-car.jpg", "destination": "/api/photo-about"},
+    {"source": "/assets/jay-selfie.jpg", "destination": "/api/photo-about"},
+    {"source": "/assets/jay-noir.jpg", "destination": "/assets/jay-noir.svg"}
+  ]
 }
