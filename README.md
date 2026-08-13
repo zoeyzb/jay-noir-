@@ -2,7 +2,7 @@
 
 Official Jay Noir artist site.
 
-This build uses the supplied Jay Noir photo set across distinct sections instead of repeating one image everywhere.
+The current build uses the supplied Jay Noir photo set across distinct scenes instead of repeating one image everywhere.
 
 - Hero: gold look
 - Music scene: garage + gold artwork
