@@ -23,3 +23,11 @@ alter table public.jay_noir_subscribers enable row level security;
 Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in Vercel. The service-role key must stay only in Vercel's server environment; never put it in the HTML or browser JavaScript.
 
 Live deployment is handled through Vercel.
+
+## Unsubscribe lifecycle
+
+The `/api/unsubscribe` endpoint implements a confirmation page and a POST-only removal from `jay_noir_subscribers`. Links are signed with HMAC-SHA256 and expire; no email address is trusted from user-submitted unsubscribe forms.
+
+Configure `UNSUBSCRIBE_SIGNING_SECRET` as a **separate random value of at least 32 characters** in the Vercel server environment and keep it private. The module `lib/unsubscribe-token.js` exports `makeUnsubscribeToken(email)` to generate a link token **on a trusted server only**. For each campaign message, the mailing provider must include `https://jay-noir.vercel.app/api/unsubscribe?token=<generated-token>` in its unsubscribe link, and should include appropriate List-Unsubscribe headers.
+
+**Important:** Email sending and generation of individual campaign links are not yet integrated. A working unsubscribe endpoint alone does not establish campaign compliance. Do not launch marketing sends until each recipient receives a valid unsubscribe link and removal has been verified in Supabase. Unsubscribed addresses must also be excluded from any separately managed sending list.
