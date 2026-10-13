@@ -9,7 +9,7 @@ export default async function handler(req,res){
   const url=process.env.SUPABASE_URL, key=process.env.SUPABASE_SERVICE_ROLE_KEY;
   if(!url||!key) return res.status(503).json({error:'Email storage is not connected yet.'});
   try{
-    const r=await fetch(`${url.replace(/\/$/,'')}/rest/v1/jay_noir_subscribers?on_conflict=email`,{method:'POST',headers:{apikey:key,Authorization:`Bearer ${key}`,'Content-Type':'application/json',Prefer:'resolution=ignore-duplicates,return=minimal'},body:JSON.stringify({email,source:'website',consented_at:new Date().toISOString()})});
+    const r=await fetch(`${url.replace(/\/$/,'')}/rest/v1/jay_noir_subscribers?on_conflict=email`,{method:'POST',headers:{apikey:key,Authorization:`Bearer ${key}`,'Content-Type':'application/json',Prefer:'resolution=ignore-duplicates,return=minimal'},signal:AbortSignal.timeout(10000),body:JSON.stringify({email,source:'website',consented_at:new Date().toISOString()})});
     if(!r.ok) return res.status(502).json({error:'Could not save email. Please try again.'});
     return res.status(200).json({message:"You're in ♡"});
   }catch{return res.status(503).json({error:'Email storage is not available. Please try again.'})}
