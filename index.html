@@ -53,7 +53,7 @@ const form=document.getElementById('signup'),status=document.getElementById('sta
   const result=document.getElementById('fan-preview-result');
   if(!trigger||!result)return;
   trigger.addEventListener('click',function(){
-    result.textContent='Sample welcome: You are in the inner circle! A real signup would confirm your consent and deliver release updates by email. This preview has not stored or sent any information.';
+    result.innerHTML='<strong>Fan preview · Step 1 of 3</strong><p>Welcome to the inner circle — a simulated introduction to upcoming releases.</p><p>Step 2: Discover the debut single <em>Wanna Know</em> using the real music links above.</p><p>Step 3: Check the official artist channels for future release announcements.</p><small>This walkthrough is an illustration only. You have not been subscribed, and no email or personal data was sent.</small>';
     trigger.textContent='PREVIEW SHOWN — NO DATA SENT';
   });
 })();
