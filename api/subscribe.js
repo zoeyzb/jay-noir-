@@ -1,5 +1,8 @@
 export default async function handler(req,res){
   if(req.method!=='POST') return res.status(405).json({error:'Method not allowed'});
+  res.setHeader('Cache-Control','no-store');
+  const contentType=String(req.headers?.['content-type']||'');
+  if(!contentType.startsWith('application/json')) return res.status(415).json({error:'Send signup details as JSON.'});
   if(!req.body || typeof req.body!=='object' || Array.isArray(req.body)) return res.status(400).json({error:'Invalid signup request.'});
   if(typeof req.body.email!=='string' || req.body.email.length>254 || typeof req.body.website==='string' && req.body.website.length>500) return res.status(400).json({error:'Invalid signup details.'});
   const email=req.body.email.trim().toLowerCase();
