@@ -53,8 +53,19 @@ const form=document.getElementById('signup'),status=document.getElementById('sta
   const result=document.getElementById('fan-preview-result');
   if(!trigger||!result)return;
   trigger.addEventListener('click',function(){
+    const step=Number(trigger.dataset.step||'0');
+    if(step===1){
+      result.innerHTML='<strong>Fan preview · Step 2 of 3</strong><p>Meet the first release, <em>Wanna Know</em>.</p><p><a href="https://open.spotify.com/artist/2SoB70q47AgT0FYAoi5hNV" target="_blank" rel="noopener noreferrer">Open Jay Noir on Spotify ↗</a></p><small>This opens the real artist page, not a simulated stream.</small>';
+      trigger.dataset.step='2';trigger.textContent='NEXT: STAY UPDATED →';return;
+    }
+    if(step===2){
+      result.innerHTML='<strong>Fan preview · Step 3 of 3</strong><p>Follow Jay Noir for new music and announcements.</p><p><a href="https://www.instagram.com/imjaynoir/" target="_blank" rel="noopener noreferrer">Visit the official Instagram ↗</a></p><p>No signup was completed. The real mailing-list form above requires a working subscriber service.</p>';
+      trigger.dataset.step='3';trigger.textContent='RESTART FAN PREVIEW';return;
+    }
+    trigger.dataset.step='0';
     result.innerHTML='<strong>Fan preview · Step 1 of 3</strong><p>Welcome to the inner circle — a simulated introduction to upcoming releases.</p><p>Step 2: Discover the debut single <em>Wanna Know</em> using the real music links above.</p><p>Step 3: Check the official artist channels for future release announcements.</p><small>This walkthrough is an illustration only. You have not been subscribed, and no email or personal data was sent.</small>';
-    trigger.textContent='PREVIEW SHOWN — NO DATA SENT';
+    trigger.textContent='NEXT: EXPLORE THE SINGLE →';
+    trigger.dataset.step='1';
   });
 })();
 </script>
